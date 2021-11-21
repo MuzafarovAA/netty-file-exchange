@@ -50,7 +50,7 @@ public class ClientApp {
             ChannelFuture channel = bootstrap.connect(HOST, PORT).sync();
 
                 final FileRequestMessage message = new FileRequestMessage();
-                message.setPath("D:\\GeekBrains\\netty-file-exchange\\testToSend.txt");
+                message.setPath("testToSend.txt");
 
 //                Scanner scanner = new Scanner(System.in);
 //                TextMessage message = new TextMessage();

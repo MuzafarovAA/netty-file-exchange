@@ -18,6 +18,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<Message> {
             FileMessage message = (FileMessage) msg;
             try (final RandomAccessFile randomAccessFile = new RandomAccessFile("1", "rw")) {
                 randomAccessFile.write(message.getContent());
+                System.out.println("Received file from server.");
             }
             ctx.close();
         }
