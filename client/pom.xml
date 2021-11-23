@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>netty-file-exchange</artifactId>
-        <groupId>com.geekbrains.netty-file-exchange</groupId>
+        <groupId>ru.gb.netty-file-exchange</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.geekbrains.netty-file-exchange.client</groupId>
+    <groupId>ru.gb.netty-file-exchange.client</groupId>
     <artifactId>client</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.geekbrains.netty-file-exchange.common</groupId>
+            <groupId>ru.gb.netty-file-exchange.common</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
