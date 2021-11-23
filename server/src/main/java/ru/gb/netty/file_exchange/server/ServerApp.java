@@ -1,7 +1,7 @@
-package com.geekbrains.netty.file_exchange.server;
+package ru.gb.netty.file_exchange.server;
 
-import com.geekbrains.netty.file_exchange.common.handler.JsonDecoder;
-import com.geekbrains.netty.file_exchange.common.handler.JsonEncoder;
+import ru.gb.netty.file_exchange.common.handler.JsonDecoder;
+import ru.gb.netty.file_exchange.common.handler.JsonEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

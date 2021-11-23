@@ -1,8 +1,8 @@
-package com.geekbrains.netty.file_exchange.client;
+package ru.gb.netty.file_exchange.client;
 
-import com.geekbrains.netty.file_exchange.common.message.FileMessage;
-import com.geekbrains.netty.file_exchange.common.message.Message;
-import com.geekbrains.netty.file_exchange.common.message.TextMessage;
+import ru.gb.netty.file_exchange.common.message.FileMessage;
+import ru.gb.netty.file_exchange.common.message.Message;
+import ru.gb.netty.file_exchange.common.message.TextMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 

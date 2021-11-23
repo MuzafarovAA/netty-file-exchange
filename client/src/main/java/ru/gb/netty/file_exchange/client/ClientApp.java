@@ -1,16 +1,14 @@
-package com.geekbrains.netty.file_exchange.client;
+package ru.gb.netty.file_exchange.client;
 
-import com.geekbrains.netty.file_exchange.common.handler.JsonDecoder;
-import com.geekbrains.netty.file_exchange.common.handler.JsonEncoder;
-import com.geekbrains.netty.file_exchange.common.message.FileRequestMessage;
-import com.geekbrains.netty.file_exchange.common.message.TextMessage;
+import ru.gb.netty.file_exchange.common.handler.JsonDecoder;
+import ru.gb.netty.file_exchange.common.handler.JsonEncoder;
+import ru.gb.netty.file_exchange.common.message.FileRequestMessage;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
-import java.util.Scanner;
 
 public class ClientApp {
 

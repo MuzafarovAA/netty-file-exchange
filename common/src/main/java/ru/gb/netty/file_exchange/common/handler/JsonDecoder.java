@@ -1,7 +1,7 @@
-package com.geekbrains.netty.file_exchange.common.handler;
+package ru.gb.netty.file_exchange.common.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.geekbrains.netty.file_exchange.common.message.Message;
+import ru.gb.netty.file_exchange.common.message.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelHandlerContext;
