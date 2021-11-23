@@ -1,4 +1,4 @@
-package com.geekbrains.netty.file_exchange.common.message;
+package ru.gb.netty.file_exchange.common.message;
 
 public class FileRequestMessage extends Message{
     private String path;
