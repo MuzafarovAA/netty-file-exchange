@@ -1,10 +1,13 @@
 package ru.gb.netty.file_exchange.client;
 
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import ru.gb.netty.file_exchange.common.handler.JsonDecoder;
 import ru.gb.netty.file_exchange.common.handler.JsonEncoder;
 import ru.gb.netty.file_exchange.common.message.FileRequestMessage;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
@@ -35,8 +38,8 @@ public class ClientApp {
                         @Override
                         protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
                             nioSocketChannel.pipeline().addLast(
-                                    new LengthFieldBasedFrameDecoder(1024,0,2,0,2),
-                                    new LengthFieldPrepender(2),
+                                    new LengthFieldBasedFrameDecoder(1024 * 1024,0,3,0,3),
+                                    new LengthFieldPrepender(3),
                                     new JsonDecoder(),
                                     new JsonEncoder(),
                                     new ClientHandler()
@@ -49,10 +52,6 @@ public class ClientApp {
 
                 final FileRequestMessage message = new FileRequestMessage();
                 message.setPath("testToSend.txt");
-
-//                Scanner scanner = new Scanner(System.in);
-//                TextMessage message = new TextMessage();
-//                message.setText(scanner.next());
 
                 channel.channel().writeAndFlush(message);
                 channel.channel().closeFuture().sync();
