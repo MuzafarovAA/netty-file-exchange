@@ -17,7 +17,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<Message> {
         }
         if (msg instanceof FileTransferMessage) {
             FileTransferMessage message = (FileTransferMessage) msg;
-            try (RandomAccessFile randomAccessFile = new RandomAccessFile("2.mp4", "rw")) {
+            try (RandomAccessFile randomAccessFile = new RandomAccessFile("1.txt", "rw")) {
                 randomAccessFile.seek(message.getStartPosition());
                 randomAccessFile.write(message.getContent());
                 System.out.println("Received file part from server.");
