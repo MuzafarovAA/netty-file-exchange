@@ -13,6 +13,9 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class ServerApp {
 
     public static final int PORT = 9000;
@@ -24,6 +27,7 @@ public class ServerApp {
     private void start() {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
+        ExecutorService threadPool = Executors.newCachedThreadPool();
 
         try {
 
@@ -34,16 +38,16 @@ public class ServerApp {
                         @Override
                         protected void initChannel(NioSocketChannel channel) throws Exception {
                             channel.pipeline().addLast(
-                                    new LengthFieldBasedFrameDecoder(1024,0,2,0,2),
-                                    new LengthFieldPrepender(2),
+                                    new LengthFieldBasedFrameDecoder(1024 * 1024,0,3,0,3),
+                                    new LengthFieldPrepender(3),
                                     new JsonDecoder(),
                                     new JsonEncoder(),
-                                    new ServerHandler()
+                                    new ServerHandler(threadPool)
                             );
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
-                    .option(ChannelOption.SO_KEEPALIVE, true);
+                    .childOption(ChannelOption.SO_KEEPALIVE, true);
 
             ChannelFuture future = serverBootstrap.bind(PORT).sync();
             System.out.println("Server started.");
@@ -54,6 +58,7 @@ public class ServerApp {
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
+            threadPool.shutdownNow();
         }
     }
 

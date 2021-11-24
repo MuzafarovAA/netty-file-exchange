@@ -1,6 +1,7 @@
 package ru.gb.netty.file_exchange.client;
 
-import ru.gb.netty.file_exchange.common.message.FileMessage;
+import ru.gb.netty.file_exchange.common.message.FileEndTransferMessage;
+import ru.gb.netty.file_exchange.common.message.FileTransferMessage;
 import ru.gb.netty.file_exchange.common.message.Message;
 import ru.gb.netty.file_exchange.common.message.TextMessage;
 import io.netty.channel.ChannelHandlerContext;
@@ -14,12 +15,17 @@ public class ClientHandler extends SimpleChannelInboundHandler<Message> {
         if (msg instanceof TextMessage) {
             System.out.println("Received from server: " + ((TextMessage) msg).getText());
         }
-        if (msg instanceof FileMessage) {
-            FileMessage message = (FileMessage) msg;
-            try (final RandomAccessFile randomAccessFile = new RandomAccessFile("1", "rw")) {
+        if (msg instanceof FileTransferMessage) {
+            FileTransferMessage message = (FileTransferMessage) msg;
+            try (RandomAccessFile randomAccessFile = new RandomAccessFile("2.mp4", "rw")) {
+                randomAccessFile.seek(message.getStartPosition());
                 randomAccessFile.write(message.getContent());
-                System.out.println("Received file from server.");
+                System.out.println("Received file part from server.");
             }
+
+        }
+        if (msg instanceof FileEndTransferMessage) {
+            System.out.println("Received file from server.");
             ctx.close();
         }
     }
